@@ -24,6 +24,7 @@ namespace Калькулятор
                         break;
                     }
                 }
+                base.OnPropertyChanged("Title");
             }
         }
         public RDSubTypes SubType { get; set; }  // Тип двери. Свойство

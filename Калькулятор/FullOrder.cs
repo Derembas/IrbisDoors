@@ -40,7 +40,7 @@ namespace Калькулятор
     }
 
     // Класс "Дверь" - общий класс для всех дверей
-    public class Door
+    public class Door : INotifyPropertyChanged
     {
         public string Title
         {
@@ -48,9 +48,24 @@ namespace Калькулятор
         }
 
         // Свойства
-        public int Width { get; set; } // Ширина дверного проема. Свойство   
-        public int Height { get; set; } // Высота дверного проема. Свойство
-        public byte Count { get; set; } // Количество дверей в заказе
+        private int width;
+        public int Width // Ширина дверного проема. Свойство   
+        {
+            get{return width;}
+            set{width = value; OnPropertyChanged("Title");}
+        }
+        private int height;
+        public int Height // Высота дверного проема. Свойство
+        {
+            get { return height; }
+            set { height = value; OnPropertyChanged("Title"); }
+        }
+        private byte count;
+        public byte Count // Количество дверей в заказе
+        {
+            get { return count; }
+            set { count = value; OnPropertyChanged("Title"); }
+        } 
 
         public Door() { }
         public Door(int width, int height, byte count)
@@ -65,6 +80,17 @@ namespace Калькулятор
         public override string ToString() // Строковое отображение двери
         {
             return string.Format("{0}x{1} - {2} шт.", Width, Height, Count);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged; // Событие изменения свойства
+        // Метод, вызываемый при изменениии свойства
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
+            } 
         }
     }
 

@@ -10,10 +10,7 @@ namespace Калькулятор
     {
         public string SubTypeName
         {
-            get
-            {
-                return AllSubTypes[(int)SubType];
-            }
+            get{return AllSubTypes[(int)SubType];}
             set
             {
                 for(int i=0; i<AllSubTypes.Count();i++)
@@ -24,6 +21,7 @@ namespace Калькулятор
                         break;
                     }
                 }
+                base.OnPropertyChanged("Title");
             }
         }
         public MDSubTypes SubType { get; set; }  // Тип двери. Свойство

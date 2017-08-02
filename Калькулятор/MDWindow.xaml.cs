@@ -22,6 +22,15 @@ namespace Калькулятор
         public MDWindow()
         {
             InitializeComponent();
+            // Регистрация события выделения текстового блока
+            EventManager.RegisterClassHandler(typeof(TextBox), 
+                                  UIElement.PreviewMouseLeftButtonDownEvent, 
+                                  new MouseButtonEventHandler(StopTextBoxClick), 
+                                  true);
+            EventManager.RegisterClassHandler(typeof(TextBox), 
+                                  UIElement.GotFocusEvent, 
+                                  new RoutedEventHandler(text_GotFocus), 
+                                  true);
         }
 
         private void OkBtn_Click(object sender, RoutedEventArgs e)
@@ -33,6 +42,22 @@ namespace Калькулятор
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
+        }
+
+        // Методы остановки выделения на текстовых блоках
+        private void text_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox text = sender as TextBox;
+            if (text != null) text.SelectAll();
+        }
+        private void StopTextBoxClick(object sender, MouseButtonEventArgs e)
+        {
+            TextBox text = sender as TextBox;
+            if (text != null && !text.IsKeyboardFocusWithin)
+            {
+                e.Handled = true;
+                text.Focus();
+            }
         }
     }
 }
