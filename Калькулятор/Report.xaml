@@ -1,0 +1,188 @@
+﻿<Window x:Class="Калькулятор.Report"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Калькулятор"
+        mc:Ignorable="d"
+        Title="Report" Height="800" Width="1000">
+    <Window.Resources>
+        <Style x:Key="HeaderText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#31869B"/>
+            <Setter Property="FontFamily" Value="Calibri"/>
+            <Setter Property="FontSize" Value="16px"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+        <Style x:Key="SimpleText" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Calibri"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Padding" Value=" 50 10 50 10"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+        <Style x:Key="ObjectText" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Padding" Value="0 0 50 0"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+        <Style x:Key="H1Text" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+        <Style x:Key="HeadCell" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+        <Style x:Key="SpecHead" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Cambria"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+        <Style x:Key="SpecSimpText" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Calibri"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+    </Window.Resources>
+<Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <DocumentViewer>
+            <FixedDocument>
+                <PageContent>
+                    <FixedPage Width="793.76" Height="1122.56">
+                        <!--793.76-->
+                        <Border BorderThickness="1" BorderBrush="Black">
+                            <StackPanel Margin="25 10 10 10" Width="766.76">
+                                <TextBlock Style="{StaticResource HeaderText}">
+                                    Завод "Ирбис" - производство холодильных, маятниковых и технологических дверей"
+                                </TextBlock>
+                                <StackPanel Margin="10 50 10 10">
+                                    <TextBlock Style="{StaticResource ObjectText}" Margin="0 50 0 0">
+                                        Заказчик
+                                    </TextBlock>
+                                    <TextBlock Text="Объект" Style="{StaticResource ObjectText}"/>
+                                    <TextBlock Text="Адрес" Style="{StaticResource ObjectText}"/>
+                                </StackPanel>
+                                <TextBlock HorizontalAlignment="Center" Margin="20"><Bold>
+                                    Коммерческое предложение №1234 от 28.03.2017</Bold>
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource SimpleText}" Text="Уважаемые коллеги!"/>
+                                <TextBlock Style="{StaticResource SimpleText}" Text="Благодарим за обращение в нашу компанию!"/>
+                                <TextBlock Style="{StaticResource SimpleText}">
+                                    Предлогаем Вам ознакомиться с подготовленным на основании Вашего запроса коммерческим предложением на поставку дверей.
+                                </TextBlock>
+                                <Grid Margin="0 20 0 0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="№" Style="{StaticResource HeadCell}" Grid.Column="0" Grid.Row="0"/>
+                                    <TextBlock Text="Наименование" Style="{StaticResource HeadCell}" Grid.Column="1" Grid.Row="0"/>
+                                    <TextBlock Text="Наименование" Style="{StaticResource HeadCell}" Grid.Column="1" Grid.Row="0"/>
+                                    <TextBlock Text="Цена, руб." Style="{StaticResource HeadCell}" Grid.Column="2" Grid.Row="0"/>
+                                    <TextBlock Text="Кол-во, шт." Style="{StaticResource HeadCell}" Grid.Column="3" Grid.Row="0"/>
+                                    <TextBlock Text="Сумма, руб." Style="{StaticResource HeadCell}" Grid.Column="4" Grid.Row="0"/>
+                                    <TextBlock Text="1" Grid.Column="0" Grid.Row="1"/>
+                                    <StackPanel Grid.Column="1" Grid.Row="1">
+                                        <TextBlock Text="Маятниковая дверь двухстворчатая офисная" />
+                                        <TextBlock FontWeight="Bold" Text="МДД(Оф)-1800.2100-40" />
+                                    </StackPanel>
+                                    <TextBlock Text="76550,00" Grid.Column="2" Grid.Row="1"/>
+                                    <TextBlock Text="1" Grid.Column="3" Grid.Row="1"/>
+                                    <TextBlock Text="76550" Grid.Column="4" Grid.Row="1"/>
+                                </Grid>
+                                <TextBlock Style="{StaticResource SimpleText}">
+                                    Получить подробную информацию о предлагаемой продукции и её комплектации Вы можете в приложенной к данному коммерческому предложению Спецификации.
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource SimpleText}">
+                                    Условия оплаты: 70% предоплата при запуске в производство, 30% доплата при получении уведомления о готовности к отгрузке.
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource SimpleText}">
+                                    Сроки производства стандартной продукции составляют 3-4 рабочие недели с даты согласования предварительных эскизов и поступления предоплаты. Точный срок изготовления продукции по данному КП необходимо уточнять перед размещением заказа.
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource SimpleText}">
+                                    Упаковка: Продукция завода упакована в индивидуальную упаковку. Возможно изготовление дополнительной упаковки (деревянная обрешетка, металлическая пирамида и т.д.) по согласованию с менеджером завода.
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource SimpleText}">
+                                    Гарантия: на продукцию завода 'Ирбис' - 1 год.  Гарантия на откатные системы 'Ирбис'  - в течение всего срока службы изделия.
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource SimpleText}">
+                                <Bold>
+                                    Данное коммерческое предложение действительно в течении 14 календарных дней и не является документом для осуществления платежа.
+                                </Bold>
+                                </TextBlock>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel>
+                                        <TextBlock Text="Менеджер отдела сбыта"/>
+                                        <TextBlock Text="Сдвижкова Виктория"/>
+                                    </StackPanel>
+                                    <StackPanel>
+                                        <TextBlock Text="mk17@irbispro.ru"/>
+                                        <TextBlock Text="Тел: +7 (499) 350 23 95 (2014)"/>
+                                        <TextBlock Text="Моб: +7 (800) 100 70 92"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <TextBlock HorizontalAlignment="Center">
+                                Сотрудничество с заводом ИРБИС - это всегда гарантии качества и долгие партнерские отношения!
+                                </TextBlock>
+                            </StackPanel>
+                        </Border>
+                    </FixedPage>
+                </PageContent>
+                <PageContent>
+                    <FixedPage Width="793.76" Height="1122.56">
+                        <StackPanel Margin="25 10 10 10" Width="766.76">
+                            <TextBlock Style="{StaticResource H1Text}">
+                                    СПЕЦИФИКАЦИЯ к коммерческому предложению №770 от 14.02.2017
+                            </TextBlock>
+                            <TextBlock Style="{StaticResource SpecHead}">
+                                Уважаемые партнёры!
+                            </TextBlock>
+                            <TextBlock Style="{StaticResource SpecSimpText}">
+                                Прошу Вас проверить указанные в данном документе типы изделий, их размеры и перечень опций, которые являются исходными данными для формирования заявки в производство.
+                            </TextBlock>
+                            <ListBox  x:Name="AllDoors" HorizontalAlignment="Stretch" ItemsSource="{Binding Order}" Margin="0,0,5,0" BorderThickness="0" BorderBrush="White">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Path=Number}"/>
+                                            <TextBlock Text="{Binding Path=Title}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </StackPanel>
+                    </FixedPage>
+                </PageContent>
+            </FixedDocument>
+        </DocumentViewer>
+    </Grid>
+</Window>

@@ -1,0 +1,71 @@
+﻿body{
+    font-family:Calibri;
+    font-size:12px;
+    background-color:lightgray;
+}
+h1 {
+    color: rgb(49,134,155);
+    font-family:Calibri;
+    font-size:16px;
+    font-style:italic;
+    font-weight:bold;
+    text-align:center;
+}
+h2 {
+    font-family:Cambria;
+    font-size:16px;
+    font-weight:bold;
+    text-align:center;
+}
+table{
+    border-collapse:collapse;
+    width: 100%;
+}
+th {
+    border: 1px solid black;
+    font-family:'Palatino Linotype';
+    font-weight:bold;
+    font-size:10px;
+}
+td {border: 1px solid black;}
+/*div {border: 1px solid black;}*/
+.Print{
+    position:center;
+    width:182mm;
+    background-color:white;
+}
+.ManagName{
+    float:left;
+    width:50%;
+    height:40px;
+    margin-left: 50px;
+}
+.ManagContact ::after{
+    /*margin-right:20px;*/
+    clear:both;
+}
+
+/*img{width:200px;}*/
+img#CatImg{
+    width:200px;
+    float:left;
+}
+img#RolSysImg{
+    width:180px;
+    clear:both;
+    /*float:right;*/
+}
+
+.ObjectInfo {
+    text-align:right;
+    margin-right:20px;
+    font-size:14px;
+}
+
+.TextAfterKP{
+    margin:20px;
+    line-height: 2;
+}
+.TextBeforeKP{
+    margin:20px;
+}

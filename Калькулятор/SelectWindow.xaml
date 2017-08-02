@@ -1,0 +1,17 @@
+﻿<Window x:Class="Калькулятор.SelectWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Калькулятор"
+        mc:Ignorable="d"
+        Title="SelectWindow" Height="auto" Width="400"
+        WindowStyle="None" Background="AliceBlue">
+    <StackPanel>
+        <ComboBox Name="DoorType" Margin="10">
+            <ComboBoxItem Content="1. РД - Распашная дверь"/>
+            <ComboBoxItem Content="2. МД - Маятниковая дверь"/>
+        </ComboBox>
+        <Button Content="Выбрать" Margin="10" Click="Button_Click"/>
+    </StackPanel>
+</Window>

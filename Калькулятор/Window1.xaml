@@ -1,0 +1,20 @@
+﻿<Window x:Class="Калькулятор.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Калькулятор"
+        mc:Ignorable="d"
+        Title="Window1" Height="300" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--<Frame x:Name="frame" Content="Frame" HorizontalAlignment="Left" VerticalAlignment="Top" Source="C:\Users\Asus\Google Диск\VBПроекты\Калькулятор\Калькулятор\Report.html"/>-->
+        <StackPanel>
+            <Button x:Name="PrintBtn" Content="Добавить" Click="PrintBtn_Click"/>
+        </StackPanel>
+        <WebBrowser Name="Browser" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Source="C:\Users\Asus\Google Диск\VBПроекты\Калькулятор\Калькулятор\Report.html"/>
+    </Grid>
+</Window>

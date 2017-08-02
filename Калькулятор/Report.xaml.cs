@@ -1,0 +1,30 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+using System.Windows.Xps.Packaging;
+
+namespace Калькулятор
+{
+    /// <summary>
+    /// Логика взаимодействия для Report.xaml
+    /// </summary>
+    public partial class Report : Window
+    {
+        public FullOrder ReportOrder;
+        public Report()
+        {
+            InitializeComponent();
+            DataContext = ReportOrder;
+        }
+    }
+}
