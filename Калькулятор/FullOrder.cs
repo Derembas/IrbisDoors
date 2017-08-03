@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Windows;
+using System.Reflection;
 
 namespace Калькулятор
 {
@@ -94,20 +95,85 @@ namespace Калькулятор
         }
     }
 
-   
+    // Класс атрибут
+    public class StringValueAttribute : System.Attribute
+    {
+
+        private string _value;
+
+        public StringValueAttribute(string value)
+        {
+            _value = value;
+        }
+
+        public string Value
+        {
+            get { return _value; }
+        }
+
+    }
+
+    // Класс получений значения из Enum
+    public static class EnumWork
+    {
+        // Получение атрибута по энумератору
+        public static string GetEnumDescription(Enum value)
+        {
+            FieldInfo fi = value.GetType().GetField(value.ToString());
+
+            StringValueAttribute[] attributes =
+                (StringValueAttribute[])fi.GetCustomAttributes(typeof(StringValueAttribute), false);
+
+            if (attributes != null && attributes.Length > 0)
+                return attributes[0].Value;
+            else
+                return value.ToString();
+        }
+
+        // Получение Энумератора по его атрибуту
+        public static Enum GetVal(Type EnumType, string Value)
+        {
+            foreach(Enum Val in Enum.GetValues(EnumType))
+            {
+                if (GetEnumDescription(Val) == Value) { return Val; }
+            }
+            return null;
+        }
+
+        // Получение списка возможных значений Энумератора (Атрибутов)
+        public static List<string> GetValuesList(Type EnumType)
+        {
+            List<string> OutArray = new List<string>();
+            foreach (Enum Val in Enum.GetValues(EnumType))
+            {
+                OutArray.Add(GetEnumDescription(Val));
+            }
+            return OutArray;
+        }
+    }
+
     // Список всех типов дверей
     public enum DoorTypes{kRDType, kMDType}
 
     // Список открывания двери
-    public enum OpenSide{kLeftSide, kRightSide}
+    public enum OpenSides {
+        [StringValue("Левое")]kLeftSide,
+        [StringValue("Праваое")]kRightSide,
+        [StringValue("")]kNone
+    }
 
     // Список типов рам маятниковых дверей
-    public enum MDRamaTypes { kObchvatType, kPType, kConerType}
+    public enum MDRamaTypes {kObchvatType, kPType, kConerType}
 
     // Список подтипов распашных дверей
-    public enum RDSubTypes { kRDO_ON, kRDD_ON, kRDO_SN, kRDD_SN}
+    public enum RDSubTypes {kRDO_ON, kRDD_ON, kRDO_SN, kRDD_SN}
 
     // Список подтипов маятниковой двера
-    public enum MDSubTypes{kMDO_ON, kMDD_ON, kMDO_SN, kMDD_SN}
+    public enum MDSubTypes {
+        [StringValue("МДО (ОН)")] kMDO_ON,
+        [StringValue("МДД (ОН)")] kMDD_ON,
+        [StringValue("МДО (СН)")] kMDO_SN,
+        [StringValue("МДД (СН)")] kMDD_SN 
+}
 
 }

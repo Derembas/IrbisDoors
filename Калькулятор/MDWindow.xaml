@@ -90,10 +90,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="Открывание" Style="{StaticResource CellHead}"/>
-                    <ComboBox Grid.Row="1" Style="{StaticResource Combo}" SelectedIndex="{Binding Path=OpenSide}">
-                        <ComboBoxItem Content="Левое"/>
-                        <ComboBoxItem Content="Правое"/>
-                    </ComboBox>
+                    <ComboBox Grid.Row="1" Style="{StaticResource Combo}" SelectedValue="{Binding Path=OpenSideName}" ItemsSource="{Binding openSides}"/>
                     <TextBlock Grid.Row="2" Text="Левое/Правое" Style="{StaticResource CellUnder}"/>
                 </Grid>
                 <!--Исполнние Рамы-->
