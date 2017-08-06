@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Калькулятор
 {
@@ -15,52 +16,60 @@ namespace Калькулятор
             set
             {
                 SubType = (MDSubTypes)EnumWork.GetVal(typeof(MDSubTypes), value);
-
-                if ((SubType==MDSubTypes.kMDD_ON || SubType==MDSubTypes.kMDD_SN )&& OpenSide!= OpenSides.kNone) { OpenSide = OpenSides.kNone; }
-                else if ((SubType==MDSubTypes.kMDO_ON || SubType==MDSubTypes.kMDO_SN) && OpenSide == OpenSides.kNone) { OpenSide = OpenSides.kLeftSide; }
-                base.OnPropertyChanged("OpenSides");
-                base.OnPropertyChanged("OpenSideName");
                 base.OnPropertyChanged("Title");
             }
         }
-        public MDSubTypes SubType { get; set; }  // Тип двери. Свойство
-
-        public string OpenSideName
+        private MDSubTypes subType;// Тип двери. Свойство
+        public MDSubTypes SubType
         {
-            get { return EnumWork.GetEnumDescription(OpenSide); }
+            get { return subType; }
             set
             {
-                OpenSide = (OpenSides)EnumWork.GetVal(typeof(OpenSides), value);
-                base.OnPropertyChanged("Title");
+                if(subType!=value)
+                {
+                    subType = value;
+                    if(subType==MDSubTypes.kMDD_ON || subType == MDSubTypes.kMDD_SN) { openSide.Nalich = false; }
+                    else { openSide.Nalich = true; }
+                }
             }
-        }
-        public OpenSides OpenSide { get; set; } // Сторона открывания
-
+        }  
+       
         // Выпадающие списки
         private string[] AllSubTypes = EnumWork.GetValuesList(typeof(MDSubTypes)).ToArray(); // Варианты под типов двери
-        public string[] SubTypes { get { return AllSubTypes; } } 
+        public string[] SubTypes { get { return AllSubTypes; } }
 
-        // Сторона открывания
-        private string[] OpenSidesCase1=new string[] {EnumWork.GetEnumDescription(OpenSides.kLeftSide), EnumWork.GetEnumDescription(OpenSides.kRightSide) }; //В случае, когда дверь одностворчатая
-        private string[] OpenSidesCase2=new string[] { EnumWork.GetEnumDescription(OpenSides.kNone) }; // В случае, когда дверь двухстворчатая
-        public string[] openSides
+        // Сторона открывания двери
+        private DoorOpenDirection openSide=new DoorOpenDirection();
+        public DoorOpenDirection OpenSide
         {
-            get
-            {
-                if (SubType == MDSubTypes.kMDO_ON || SubType == MDSubTypes.kMDO_SN)
-                    return OpenSidesCase1;
-                else
-                    return OpenSidesCase2;
-            }
+            get { return openSide; }
         }
 
-        // Конструктор
-        public MDDoor() : base() { }
+        // Тип рамы
+        private MDRamaType rama =new MDRamaType();
+        public MDRamaType Rama { get { return rama; } }
 
+        // Стена крепления
+        private DoorCrepOpc wall=new DoorCrepOpc();
+        public DoorCrepOpc Wall { get { return wall; } }
+
+        // Конструктор
+        public MDDoor() : base(){
+            openSide = new DoorOpenDirection();
+            openSide.PropertyChanged += OpenSide_PropertyChanged;
+            rama.PropertyChanged += Rama_PropertyChanged;
+        }
+        
         public MDDoor(MDSubTypes subType, int width, int height, byte count):base(width, height, count)
         {
             SubType = subType;
+
+            // Сторона открывания
+            openSide.PropertyChanged += OpenSide_PropertyChanged;
+            rama.PropertyChanged += Rama_PropertyChanged;
         }
+
+        
 
         public override void Open()
         {
@@ -71,15 +80,19 @@ namespace Калькулятор
 
         public override string ToString()
         {
-            switch(OpenSide)
-            {
-                case OpenSides.kRightSide:
-                    return string.Format("{0} - {1}-Пр", AllSubTypes[(int)SubType], base.ToString());
-                case OpenSides.kLeftSide:
-                    return string.Format("{0} - {1}-Лв", AllSubTypes[(int)SubType], base.ToString());
-                default:
-                    return string.Format("{0} - {1}", AllSubTypes[(int)SubType], base.ToString());
-            }
+            return string.Format("{0} - {1}{2} - {3} шт.", AllSubTypes[(int)SubType], base.ToString(), OpenSide.Title, Count);
+        }
+
+        // Функция вызывается при изменении стороны открывания
+        private void OpenSide_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            base.OnPropertyChanged("Title");
+            MessageBox.Show(Wall.WallTypeName);
+        }
+        // Функция вызывается при изменении типа рамы крепления
+        private void Rama_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            wall.RamaType = Rama.Type;
         }
     }
 }

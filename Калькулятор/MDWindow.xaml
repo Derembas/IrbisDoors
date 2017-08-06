@@ -90,7 +90,10 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="Открывание" Style="{StaticResource CellHead}"/>
-                    <ComboBox Grid.Row="1" Style="{StaticResource Combo}" SelectedValue="{Binding Path=OpenSideName}" ItemsSource="{Binding openSides}"/>
+                    <ComboBox Grid.Row="1" Style="{StaticResource Combo}" 
+                              SelectedValue="{Binding Path=OpenSide.OpenSideName}" 
+                              ItemsSource="{Binding Path=OpenSide.OpenSides}" 
+                              IsEnabled="{Binding Path=OpenSide.Nalich}"/>
                     <TextBlock Grid.Row="2" Text="Левое/Правое" Style="{StaticResource CellUnder}"/>
                 </Grid>
                 <!--Исполнние Рамы-->
@@ -101,11 +104,9 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="Исполнение" Style="{StaticResource CellHead}"/>
-                    <ComboBox Grid.Row="1" Style="{StaticResource Combo}" SelectedIndex="{Binding Path=RamaType}">
-                        <ComboBoxItem Content="В обхват"/>
-                        <ComboBoxItem Content="П-образная"/>
-                        <ComboBoxItem Content="Угловая"/>
-                    </ComboBox>
+                    <ComboBox Grid.Row="1" Style="{StaticResource Combo}" 
+                              ItemsSource="{Binding Path=Rama.AllTypes}"
+                              SelectedValue="{Binding Path=Rama.TypeName}"/>
                     <TextBlock Grid.Row="2" Text="В обхват, П-образная, Угловая" Style="{StaticResource CellUnder}"/>
                 </Grid>
                 <!--Количество дверей-->
@@ -117,6 +118,29 @@
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="6" Text="Кол-во" Style="{StaticResource CellHead}"/>
                     <TextBox Grid.Row="1"  Grid.Column="6" Name="KolBox" Text="{Binding Path=Count}" Style="{StaticResource TBox}"/>
+                </Grid>
+            </StackPanel>
+            <!--Вторая строка-->
+            <StackPanel Orientation="Horizontal">
+                <!--Крепление стены-->
+                <Grid Width="230">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <ComboBox Grid.Row="0" Name="WallType" Style="{StaticResource Combo}" 
+                              SelectedValue="{Binding Path=Wall.WallTypeName}" 
+                              ItemsSource="{Binding Path=Wall.AllWallTypes}"/>
+                    <TextBlock Grid.Row="1" Text="Материал стены" Style="{StaticResource CellUnder}"/>
+                </Grid>
+                <!--Толщина стены-->
+                <Grid Width="70">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBox Grid.Row="0" Style="{StaticResource TBox}" Text="{Binding Path=Wall.WallWidth}"/>
+                    <TextBlock Grid.Row="1" Text="Толщина стены" Style="{StaticResource CellUnder}"/>
                 </Grid>
             </StackPanel>
         </StackPanel >

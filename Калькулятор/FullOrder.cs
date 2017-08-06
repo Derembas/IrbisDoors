@@ -80,7 +80,7 @@ namespace Калькулятор
 
         public override string ToString() // Строковое отображение двери
         {
-            return string.Format("{0}x{1} - {2} шт.", Width, Height, Count);
+            return string.Format("{0}x{1}", Width, Height);
         }
 
         public event PropertyChangedEventHandler PropertyChanged; // Событие изменения свойства
@@ -133,11 +133,13 @@ namespace Калькулятор
         // Получение Энумератора по его атрибуту
         public static Enum GetVal(Type EnumType, string Value)
         {
-            foreach(Enum Val in Enum.GetValues(EnumType))
-            {
-                if (GetEnumDescription(Val) == Value) { return Val; }
-            }
-            return null;
+            var RetVal = from Enum Val in Enum.GetValues(EnumType)
+                         where GetEnumDescription(Val) == Value
+                         select Val;
+
+            if (RetVal!=null && RetVal.Any()) { return RetVal.First(); }
+            else { return (from Enum Val in Enum.GetValues(EnumType)
+                          select Val).First(); }
         }
 
         // Получение списка возможных значений Энумератора (Атрибутов)
@@ -150,20 +152,58 @@ namespace Калькулятор
             }
             return OutArray;
         }
+
+        // Получение списка описаний по списку значений
+        public static string[] GetMassValues(Enum[] Values)
+        {
+            string[] OutArray = new string[Values.Length];
+            for(int i=0; i<Values.Length; i++)
+            {
+                OutArray[i] = GetEnumDescription(Values[i]);
+            }
+            return OutArray;
+        }
     }
 
     // Список всех типов дверей
     public enum DoorTypes{kRDType, kMDType}
 
     // Список открывания двери
-    public enum OpenSides {
+    public enum OpenSidesEnum {
         [StringValue("Левое")]kLeftSide,
-        [StringValue("Праваое")]kRightSide,
+        [StringValue("Правое")]kRightSide,
         [StringValue("")]kNone
     }
 
     // Список типов рам маятниковых дверей
-    public enum MDRamaTypes {kObchvatType, kPType, kConerType}
+    public enum RamaTypeEnum {
+        [StringValue("В обхват")]kObchvatType,
+        [StringValue("П-образная")]kPType,
+        [StringValue("Угловая")]kConerType
+    }
+
+    // Список возможных материалов
+    public enum MaterialsEnum
+    {
+        [StringValue("Пластик плоский")]kFlatPlast,
+        [StringValue("Пластик формованный")]kFormedPlast,
+        [StringValue("AISI 304")]kAISI304,
+        [StringValue("AISI 430")]kAISI430,
+        [StringValue("Рифл. Ал.")]kRifAl
+    }
+
+    // Список типов стен
+    public enum WallTypeEnum
+    {
+        [StringValue("сэндвич-панель")]kSendPenel,
+        [StringValue("гипсокартон")]kGipsBoard,
+        [StringValue("пустотелый кирпич")]kEmptyBrick,
+        [StringValue("газосиликатный блок")]kGasBlock,
+        [StringValue("металлоконструкция")]kMetallDesign,
+        [StringValue("бетон")]kConcrete,
+        [StringValue("полнотелый кирпич")]kFullBrick,
+        [StringValue("сэндвич-панель + металлоконструкция")]kSenPan_Metall
+    }
 
     // Список подтипов распашных дверей
     public enum RDSubTypes {kRDO_ON, kRDD_ON, kRDO_SN, kRDD_SN}
@@ -175,5 +215,4 @@ namespace Калькулятор
         [StringValue("МДО (СН)")] kMDO_SN,
         [StringValue("МДД (СН)")] kMDD_SN 
 }
-
 }
