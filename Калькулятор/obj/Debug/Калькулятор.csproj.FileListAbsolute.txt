@@ -62,7 +62,6 @@ C:\Git\Калькулятор\Калькулятор\bin\Debug\Report.html
 C:\Git\Калькулятор\Калькулятор\bin\Debug\Styles.css
 C:\Git\Калькулятор\Калькулятор\bin\Debug\Калькулятор.exe
 C:\Git\Калькулятор\Калькулятор\bin\Debug\Калькулятор.pdb
-C:\Git\Калькулятор\Калькулятор\obj\Debug\Калькулятор.csprojResolveAssemblyReference.cache
 C:\Git\Калькулятор\Калькулятор\obj\Debug\MainWindow.g.cs
 C:\Git\Калькулятор\Калькулятор\obj\Debug\MDWindow.g.cs
 C:\Git\Калькулятор\Калькулятор\obj\Debug\RDWindow.g.cs
@@ -82,3 +81,10 @@ C:\Git\Калькулятор\Калькулятор\obj\Debug\Window1.baml
 C:\Git\Калькулятор\Калькулятор\obj\Debug\Калькулятор.g.resources
 C:\Git\Калькулятор\Калькулятор\obj\Debug\Калькулятор.Properties.Resources.resources
 C:\Git\Калькулятор\Калькулятор\obj\Debug\Калькулятор.csproj.GenerateResource.Cache
+C:\Git\Калькулятор\Калькулятор\obj\Debug\BamperControl.g.cs
+C:\Git\Калькулятор\Калькулятор\obj\Debug\App.baml
+C:\Git\Калькулятор\Калькулятор\obj\Debug\BamperControl.baml
+C:\Git\Калькулятор\Калькулятор\obj\Debug\StyleDictionary.baml
+C:\Git\Калькулятор\Калькулятор\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Git\Калькулятор\Калькулятор\obj\Debug\MDWindowControl.g.cs
+C:\Git\Калькулятор\Калькулятор\obj\Debug\MDWindowControl.baml

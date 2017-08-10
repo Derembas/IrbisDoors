@@ -168,42 +168,48 @@ namespace Калькулятор
     // Список всех типов дверей
     public enum DoorTypes{kRDType, kMDType}
 
-    // Список открывания двери
-    public enum OpenSidesEnum {
-        [StringValue("Левое")]kLeftSide,
-        [StringValue("Правое")]kRightSide,
-        [StringValue("")]kNone
-    }
-
-    // Список типов рам маятниковых дверей
-    public enum RamaTypeEnum {
-        [StringValue("В обхват")]kObchvatType,
-        [StringValue("П-образная")]kPType,
-        [StringValue("Угловая")]kConerType
-    }
-
-    // Список возможных материалов
-    public enum MaterialsEnum
+    // Список всех возможных значений для опций
+    public enum OptionValueEnum
     {
-        [StringValue("Пластик плоский")]kFlatPlast,
-        [StringValue("Пластик формованный")]kFormedPlast,
-        [StringValue("AISI 304")]kAISI304,
-        [StringValue("AISI 430")]kAISI430,
-        [StringValue("Рифл. Ал.")]kRifAl
-    }
+        // Направление открывания двери
+        [StringValue("Левое")] kOpenLeft,
+        [StringValue("Правое")] kOpenRight,
 
-    // Список типов стен
-    public enum WallTypeEnum
-    {
-        [StringValue("сэндвич-панель")]kSendPenel,
-        [StringValue("гипсокартон")]kGipsBoard,
-        [StringValue("пустотелый кирпич")]kEmptyBrick,
-        [StringValue("газосиликатный блок")]kGasBlock,
-        [StringValue("металлоконструкция")]kMetallDesign,
-        [StringValue("бетон")]kConcrete,
-        [StringValue("полнотелый кирпич")]kFullBrick,
-        [StringValue("сэндвич-панель + металлоконструкция")]kSenPan_Metall
+        // Список типов рам маятниковых дверей
+        [StringValue("В обхват")] kMDRamaObchvatType,
+        [StringValue("П-образная")] kMDRamaPType,
+        [StringValue("Угловая")] kMDRamaConerType,
+
+        // Список возможных материалов
+        [StringValue("Пластик плоский")] kMaterFlatPlast,
+        [StringValue("Пластик формованный")] kMaterFormedPlast,
+        [StringValue("AISI 304")] kMaterAISI304,
+        [StringValue("AISI 430")] kMaterAISI430,
+        [StringValue("Рифл. Ал.")] kMaterRifAl,
+
+        // Список типов стен
+        [StringValue("Сэндвич-панель")] kWallSendPenel,
+        [StringValue("Гипсокартон")] kWallGipsBoard,
+        [StringValue("Пустотелый кирпич")] kWallEmptyBrick,
+        [StringValue("Газосиликатный блок")] kWallGasBlock,
+        [StringValue("Металлоконструкция")] kWallMetallDesign,
+        [StringValue("Бетон")] kWallConcrete,
+        [StringValue("Полнотелый кирпич")] kWallFullBrick,
+        [StringValue("Сэндвич-панель + металлоконструкция")] kWallSenPan_Metall,
+
+        // Обрамление маятникого окна
+        [StringValue("Резиновое")] kWinObrRezina,
+        [StringValue("Металлическое")] kWinObrMetall,
+        [StringValue("Нетокна")] kWinObrNone,
+
+        // Форма маятникого окна
+        [StringValue("Овльное")] kWinFormOval,
+        [StringValue("Круглое")] kWinFormCircule,
+        [StringValue("Прямоугольное")] kWinFormRectang,
+        [StringValue("Квадратное")] kWinFormSquare,
+        [StringValue("Ромб")] kWinFormRomb,
     }
+    
 
     // Список подтипов распашных дверей
     public enum RDSubTypes {kRDO_ON, kRDD_ON, kRDO_SN, kRDD_SN}
@@ -215,4 +221,7 @@ namespace Калькулятор
         [StringValue("МДО (СН)")] kMDO_SN,
         [StringValue("МДД (СН)")] kMDD_SN 
 }
+
+    // Список возможных типов свойств
+
 }

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Git\Калькулятор\Калькулятор\App.xaml
-6-1700342129
+91464338311
 2-1758963762
-20-93708255
+22-1022160438
 15-1954474480
-MainWindow.xaml;MDWindow.xaml;RDWindow.xaml;Report.xaml;SelectWindow.xaml;Window1.xaml;
+BamperControl.xaml;MainWindow.xaml;MDWindow.xaml;MDWindowControl.xaml;RDWindow.xaml;Report.xaml;SelectWindow.xaml;StyleDictionary.xaml;Window1.xaml;
 
-False
+True
 

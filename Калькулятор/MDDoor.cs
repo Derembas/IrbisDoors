@@ -53,6 +53,10 @@ namespace Калькулятор
         private DoorCrepOpc wall=new DoorCrepOpc();
         public DoorCrepOpc Wall { get { return wall; } }
 
+        // Опции
+        private MDOptions options = new MDOptions();
+        public MDOptions Options { get { return options; } }
+
         // Конструктор
         public MDDoor() : base(){
             openSide = new DoorOpenDirection();
@@ -87,7 +91,6 @@ namespace Калькулятор
         private void OpenSide_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             base.OnPropertyChanged("Title");
-            MessageBox.Show(Wall.WallTypeName);
         }
         // Функция вызывается при изменении типа рамы крепления
         private void Rama_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

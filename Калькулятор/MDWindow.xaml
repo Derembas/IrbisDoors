@@ -5,50 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Калькулятор"
         mc:Ignorable="d"
-        Title="MDWindow" Height="200" Width="600"
+        Title="MDWindow"  Width="600"
         WindowStyle="None" MouseDown="Window_MouseDown">
     <Window.Resources>
-        <Style x:Key="CellHead" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Calibri"/>
-            <Setter Property="FontSize"  Value="12"/>
-            <Setter Property="FontWeight"  Value="Bold"/>
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="HorizontalAlignment"  Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Bottom"/>
-            <Setter Property="TextWrapping"  Value="Wrap"/>
-            <Setter Property="TextAlignment" Value="Center"/>
-        </Style>
-        <Style x:Key="CellUnder" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Calibri"/>
-            <Setter Property="FontSize"  Value="10"/>
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="Foreground" Value="Blue"/>
-            <Setter Property="HorizontalAlignment"  Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="TextWrapping"  Value="Wrap"/>
-            <Setter Property="TextAlignment" Value="Center"/>
-        </Style>
-        <Style x:Key="Combo" TargetType="ComboBox">
-            <Setter Property="Margin" Value="2 0 2 0"/>
-            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-        </Style>
-        <Style x:Key="TBox" TargetType="TextBox">
-            <Setter Property="Margin" Value="2 0"/>
-            <Setter Property="TextAlignment" Value="Center"/>
-        </Style>
-        <Style x:Key="Check" TargetType="CheckBox">
-            <Setter Property="Margin" Value="2 0 2 0"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-        </Style>
-        <Style x:Key="LittleGridWidth" TargetType="ColumnDefinition">
-            <Setter Property="Width" Value="70"/>
-        </Style>
-        <Style x:Key="MediumGridWidth" TargetType="ColumnDefinition">
-            <Setter Property="Width" Value="120"/>
-        </Style>
-        <Style x:Key="BigGridWidth" TargetType="ColumnDefinition">
-            <Setter Property="Width" Value="190"/>
-        </Style>
+        <DataTemplate  x:Key="BamperTemplate">
+            <local:BamperControl Margin="5"  DataContext="{Binding ElementName=OptionSelect, Path=SelectedValue}"/>
+        </DataTemplate>
+        <DataTemplate x:Key="WindowTemplate">
+            <local:MDWindowControl Margin="5"  DataContext="{Binding ElementName=OptionSelect, Path=SelectedValue}"/>
+        </DataTemplate>
+        <local:TemplateSelector x:Key="MyTemplateSelector"/>
     </Window.Resources>
     <StackPanel Orientation="Vertical" Margin="10">
         <StackPanel>
@@ -144,6 +110,25 @@
                 </Grid>
             </StackPanel>
         </StackPanel >
-        <Button  VerticalAlignment="Bottom" HorizontalAlignment="Right" Name="OkBtn" Click="OkBtn_Click" Content="Принять" Margin="2" Width="80"/>
+        <!--Список опций-->
+        <TextBlock Text="Опции" Style="{StaticResource HeaderText}"/>
+        <StackPanel Orientation="Horizontal">
+            <ListBox Name="OptionSelect" Width="250" Height="80" ItemsSource="{Binding Path=Options}" SelectionChanged="OptionSelect_SelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox  Style="{StaticResource Check}"
+                                  IsChecked="{Binding Path=Nalich}"/>
+                            <TextBlock Text="{Binding Path=Name}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <ContentPresenter x:Name="presenter" Width="250" ContentTemplateSelector="{StaticResource ResourceKey=MyTemplateSelector}"/>
+            <!--<ItemsControl Width="250" BorderBrush="LightGray" BorderThickness="1">
+                <UCon:BamperControl Margin="5"  DataContext="{Binding ElementName=OptionSelect, Path=SelectedValue}"/>
+            </ItemsControl>-->
+        </StackPanel>
+        <Button  VerticalAlignment="Bottom" HorizontalAlignment="Right" Name="OkBtn" Click="OkBtn_Click" Content="Принять" Margin="5" Width="80"/>
     </StackPanel>
 </Window>

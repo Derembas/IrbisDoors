@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -12,7 +13,19 @@ namespace Калькулятор
     class Option: INotifyPropertyChanged
     {
         // Свойства
-        public bool Nalich { get; set; } // Наличие опции
+        private bool nalich; // Наличие опции
+        public bool Nalich
+        {
+            get { return nalich; }
+            set
+            {
+                if(nalich!=value)
+                {
+                    nalich = value;
+                    OnPropertyChanged("Nalich");
+                }
+            }
+        } 
 
         private string name;
         public string Name { get { return name; } } // Имя опции
@@ -42,14 +55,6 @@ namespace Калькулятор
             }
         }
     }
-
-
-    //// Класс, реализующий INotifyPropertyChanged
-    //public class OpReal : INotifyPropertyChanged
-    //{
-    //    public event PropertyChangedEventHandler PropertyChanged;
-    //} // Может потом пригодиться
-
 
     // Опция направление открывания двери
     public class DoorOpenDirection: INotifyPropertyChanged
@@ -85,13 +90,13 @@ namespace Калькулятор
             }
             set
             {
-                OpenSide = (OpenSidesEnum)EnumWork.GetVal(typeof(OpenSidesEnum), value);
+                OpenSide = (OptionValueEnum)EnumWork.GetVal(typeof(OptionValueEnum), value);
             }
         }
 
 
-        private OpenSidesEnum openSide; // Выбранное открывание
-        public OpenSidesEnum OpenSide
+        private OptionValueEnum openSide; // Выбранное открывание
+        public OptionValueEnum OpenSide
         {
             get { return openSide; }
             set
@@ -105,7 +110,7 @@ namespace Калькулятор
         }
 
         // Список возможных вариантов
-        private string[] openSides=new string[] { EnumWork.GetEnumDescription(OpenSidesEnum.kLeftSide), EnumWork.GetEnumDescription(OpenSidesEnum.kRightSide) }; //В случае, когда дверь одностворчатая 
+        private string[] openSides= EnumWork.GetMassValues(new Enum[] { OptionValueEnum.kOpenLeft, OptionValueEnum.kOpenRight }); //В случае, когда дверь одностворчатая 
         public string[] OpenSides
         {
             get
@@ -131,7 +136,7 @@ namespace Калькулятор
         public DoorOpenDirection()
         {
             Nalich = true;
-            OpenSide = OpenSidesEnum.kLeftSide;
+            OpenSide = OptionValueEnum.kOpenLeft;
         }
 
         public override string ToString()
@@ -140,9 +145,9 @@ namespace Калькулятор
             {
                 switch (OpenSide)
                 {
-                    case OpenSidesEnum.kLeftSide:
+                    case OptionValueEnum.kOpenLeft:
                         return "-Лв";
-                    case OpenSidesEnum.kRightSide:
+                    case OptionValueEnum.kOpenRight:
                         return "-Пр";
                     default: return "";
                 }
@@ -155,8 +160,8 @@ namespace Калькулятор
     public class MDRamaType: INotifyPropertyChanged
     {
         // Тип рамы
-        private RamaTypeEnum type;
-        public RamaTypeEnum Type
+        private OptionValueEnum type;
+        public OptionValueEnum Type
         {
             get { return type; }
             set
@@ -175,12 +180,15 @@ namespace Калькулятор
             get { return EnumWork.GetEnumDescription(Type);}
             set
             {
-                Type = (RamaTypeEnum)EnumWork.GetVal(typeof(RamaTypeEnum), value);
+                Type = (OptionValueEnum)EnumWork.GetVal(typeof(OptionValueEnum), value);
             }
         }
 
         // Список возможных значений
-        private string[] allTypes = EnumWork.GetValuesList(typeof(RamaTypeEnum)).ToArray(); // Варианты под типов двери
+        private string[] allTypes = EnumWork.GetMassValues(new Enum[] 
+                        { OptionValueEnum.kMDRamaObchvatType,
+                            OptionValueEnum.kMDRamaConerType,
+                            OptionValueEnum.kMDRamaPType }); // Варианты под типов двери
         public string[] AllTypes { get { return allTypes; } }
 
         // Конструктор
@@ -202,8 +210,8 @@ namespace Калькулятор
     public class DoorCrepOpc : INotifyPropertyChanged
     {
         // Вариант рамы, для которой подбирается крепёж
-        private RamaTypeEnum ramaType;
-        public RamaTypeEnum RamaType
+        private OptionValueEnum ramaType;
+        public OptionValueEnum RamaType
         {
             get { return ramaType; }
             set
@@ -218,8 +226,8 @@ namespace Калькулятор
         }
 
         // Стена крепления двери
-        private WallTypeEnum wallType;
-        public WallTypeEnum WallType
+        private OptionValueEnum wallType;
+        public OptionValueEnum WallType
         {
             get { return wallType; }
             set
@@ -238,16 +246,18 @@ namespace Калькулятор
             get { return EnumWork.GetEnumDescription(WallType); }
             set
             {
-                WallType = (WallTypeEnum)EnumWork.GetVal(typeof(WallTypeEnum), value);
+                WallType = (OptionValueEnum)EnumWork.GetVal(typeof(OptionValueEnum), value);
             }
         }
 
         // Список возможных значений
-        private string[] allObchvatTypes = EnumWork.GetValuesList(typeof(WallTypeEnum)).ToArray(); // Варианты стены для рамы в обхват
+        private string[] allObchvatTypes = EnumWork.GetMassValues(new Enum[]
+            { OptionValueEnum.kWallSendPenel, OptionValueEnum.kWallGipsBoard, OptionValueEnum.kWallEmptyBrick, OptionValueEnum.kWallGasBlock,
+            OptionValueEnum.kWallMetallDesign, OptionValueEnum.kWallConcrete, OptionValueEnum.kWallFullBrick, OptionValueEnum.kWallSenPan_Metall}); // Варианты стены для рамы в обхват
         private string[] allCornerTypes = EnumWork.GetMassValues(new Enum[] 
-            { WallTypeEnum.kEmptyBrick, WallTypeEnum.kMetallDesign, WallTypeEnum.kConcrete, WallTypeEnum.kFullBrick }); // Варианты стены для угловой рамы
+            { OptionValueEnum.kWallEmptyBrick, OptionValueEnum.kWallMetallDesign, OptionValueEnum.kWallConcrete, OptionValueEnum.kWallFullBrick}); // Варианты стены для угловой рамы
         private string[] allPRamaTypes = EnumWork.GetMassValues(new Enum[]
-            { WallTypeEnum.kMetallDesign, WallTypeEnum.kConcrete, WallTypeEnum.kFullBrick, WallTypeEnum.kSenPan_Metall }); // Варианты стены для П-образной рамы
+            { OptionValueEnum.kWallMetallDesign, OptionValueEnum.kWallConcrete, OptionValueEnum.kWallFullBrick, OptionValueEnum.kWallSenPan_Metall }); // Варианты стены для П-образной рамы
 
         // Вывод списка
         public string[] AllWallTypes
@@ -256,9 +266,9 @@ namespace Калькулятор
             {
                 switch(RamaType)
                 {
-                    case RamaTypeEnum.kObchvatType:
+                    case OptionValueEnum.kMDRamaObchvatType:
                         return allObchvatTypes;
-                    case RamaTypeEnum.kConerType:
+                    case OptionValueEnum.kMDRamaConerType:
                         return allCornerTypes;
                     default:
                         return allPRamaTypes;
@@ -281,43 +291,14 @@ namespace Калькулятор
         }
     }
 
-
-    // Базовый класс для простых опций
-    //public class SimpleOption<T> where T : struct, IConvertible, IComparable, IFormattable
-    //{
-    //    // Значение опции
-    //    private T _value;
-    //    public T Value
-    //    {
-    //        get { return _value; }
-    //        set
-    //        {
-    //            if (_value != value)
-    //            {
-    //                _value = value;
-    //            }
-    //        }
-    //    }
-
-    //    private string valueName;
-    //    public string ValueName
-    //    {
-    //        get { return EnumWork.GetEnumDescription(Value); }
-    //        set { Value = (T)EnumWork.GetVal(typeof(T), value); }
-    //    }
-    //}
-
-
     // Опция бампер
-    class BampOpc : Option
+    class BampOpt : Option
     {
-        public BampOpc(string _name) : base(_name)
-        {
-        }
-        
+        public BampOpt(string _name) : base(_name) {}
+
         // Материал бампера
-        private MaterialsEnum material;
-        public MaterialsEnum Material
+        private OptionValueEnum material;
+        public OptionValueEnum Material
         {
             get { return material; }
             set
@@ -334,12 +315,12 @@ namespace Калькулятор
         public string MaterialName
         {
             get { return EnumWork.GetEnumDescription(Material);}
-            set { Material = (MaterialsEnum)EnumWork.GetVal(typeof(MaterialsEnum), value);}
+            set { Material = (OptionValueEnum)EnumWork.GetVal(typeof(OptionValueEnum), value);}
         }
 
         // Варианты материалов
         private string[] allMaterials= EnumWork.GetMassValues(new Enum[]
-            { MaterialsEnum.kFormedPlast, MaterialsEnum.kFlatPlast, MaterialsEnum.kAISI304, MaterialsEnum.kAISI430, MaterialsEnum.kRifAl }); // Варианты стены для угловой рамы
+            { OptionValueEnum.kMaterFormedPlast, OptionValueEnum.kMaterFlatPlast, OptionValueEnum.kMaterAISI304, OptionValueEnum.kMaterAISI430, OptionValueEnum.kMaterRifAl }); // Варианты стены для угловой рамы
 
         public string[] AllMaterials { get { return allMaterials; } }
 
@@ -347,14 +328,163 @@ namespace Калькулятор
     }
 
     // Опция порог
-    class PorogOpc: Option
+    class PorogOpt: Option
     {
-        public PorogOpc(string _name) : base(_name)
+        public PorogOpt(string _name) : base(_name)
         {
         }
 
         public string Mater { get; set; } // Материал порога
         public string Type { get; set; } // Тип порога
+    }
+
+    // Опция окно для МД
+    class MDWindowOpt : Option
+    {
+        // Конструктор
+        public MDWindowOpt(string _name) : base(_name) {}
+
+        // Обраление окна
+        private OptionValueEnum obramlen;
+        public OptionValueEnum Obramlen
+        {
+            get { return obramlen; }
+            set
+            {
+                if (obramlen != value)
+                {
+                    obramlen = value;
+                    base.OnPropertyChanged("ObramlenName");
+                    base.OnPropertyChanged("WinForms");
+                    base.OnPropertyChanged("FormEnabled");
+                    if (!WinForms.Contains(WinFormName)) { WinFormName = WinForms[0]; }
+                }
+            }
+        }
+
+        //Варианты обрамления
+        private string[] obramlenTypes = EnumWork.GetMassValues(new Enum[] {
+            OptionValueEnum.kWinObrRezina,
+            OptionValueEnum.kWinObrMetall,
+            OptionValueEnum.kWinObrNone});
+        public string[] ObramlenTypes { get { return obramlenTypes; } }
+
+        // Текстовое представления выбранного обрамления
+        public string ObramlenName
+        {
+            get { return EnumWork.GetEnumDescription(Obramlen); }
+            set { Obramlen = (OptionValueEnum)EnumWork.GetVal(typeof(OptionValueEnum), value); }
+        }
+
+        // Форма окна
+        private OptionValueEnum windowForm;
+        public OptionValueEnum WindowForm
+        {
+            get { return windowForm; }
+            set
+            {
+                if (windowForm != value)
+                {
+                    windowForm = value;
+                    base.OnPropertyChanged("ObramlenName");
+                    base.OnPropertyChanged("WinSizeValues");
+                    if (!WinSizeValues.Contains(WinSize)) { WinSize = WinSizeValues[0]; }
+                }
+            }
+        }
+
+        // Варианты возможных форм окна
+        private string[] winFormTypes1 = EnumWork.GetMassValues(new Enum[]
+        {
+            OptionValueEnum.kWinFormOval,
+            OptionValueEnum.kWinFormCircule,
+            OptionValueEnum.kWinFormRectang,
+            OptionValueEnum.kWinFormSquare
+        });
+        private string[] winFormTypes2 = EnumWork.GetMassValues(new Enum[]
+        {
+            OptionValueEnum.kWinFormRectang,
+            OptionValueEnum.kWinFormSquare,
+            OptionValueEnum.kWinFormRomb
+        });
+
+        // Вывод списка значений
+        public string[] WinForms
+        { get
+            {
+                switch (Obramlen)
+                {
+                    case OptionValueEnum.kWinObrMetall:
+                        return winFormTypes2;
+                    default:
+                        return winFormTypes1;
+                }
+            }
+        }
+
+        // Текстовое представления выбранного обрамления
+        public string WinFormName
+        {
+            get { return EnumWork.GetEnumDescription(WindowForm); }
+            set { WindowForm = (OptionValueEnum)EnumWork.GetVal(typeof(OptionValueEnum), value); }
+        }
+        
+        // Доступность формы
+        public bool FormEnabled
+        {
+            get
+            {
+                if (Obramlen == OptionValueEnum.kWinObrNone) { return false; }
+                else { return Nalich; }
+            }
+        }
+
+        // Размеры окна
+        private string winSize;
+        public string WinSize
+        {
+            get { return winSize; }
+            set
+            {
+                if(winSize!=value)
+                {
+                    winSize = value;
+                }
+            }
+        }
+
+        // Варианты достыпных размеров
+        private string[] winSizeValues1 = new string[] { "300x580" };
+        private string[] winSizeValues2 = new string[] { "200x580", "300x580" }; // Овальное окно
+        private string[] winSizeValues3 = new string[] { "300", "350", "400", "450" }; // Круглое окно
+        private string[] winSizeValues4 = new string[] { "400x600", "500x700" }; // Прямоугольное окно
+        private string[] winSizeValues5 = new string[] { "300x600", "400x600", "500x700" }; // Прямоугольное окно
+        private string[] winSizeValues6 = new string[] { "400x400", "700x700"}; // Квадратное окно
+        private string[] winSizeValues7 = new string[] { "400x400", "600x600", "700x700" }; //Квадратное окно
+        private string[] winSizeValues8 = new string[] { "200x200", "300x300" }; // Окно Ромб
+
+        // Вывод списка размеров
+        public string[] WinSizeValues
+        {
+            get
+            {
+                switch (WindowForm)
+                {
+                    case OptionValueEnum.kWinFormOval:
+                        return winSizeValues2;
+                    case OptionValueEnum.kWinFormCircule:
+                        return winSizeValues3;
+                    case OptionValueEnum.kWinFormRectang:
+                        if (Obramlen == OptionValueEnum.kWinObrMetall) { return winSizeValues5; }
+                        else { return winSizeValues4; }
+                    case OptionValueEnum.kWinFormSquare:
+                        if (Obramlen == OptionValueEnum.kWinObrMetall) { return winSizeValues7; }
+                        else { return winSizeValues6; }
+                    default:
+                        return winSizeValues8;
+                }
+            }
+        }
     }
 
     // Опция материал
@@ -371,6 +501,37 @@ namespace Калькулятор
     // Класс список опций
     class Options
     {
-        private List<Option> options; //
+        public Option[] options; //
+    }
+
+    // Класс списка опций для маятеиковой двери
+    class MDOptions: IEnumerable
+    {
+        // Бампер для рук
+        private BampOpt handBamper = new BampOpt("Бампер для рук");
+        public BampOpt HandBamper { get { return handBamper; } }
+
+        // Бампер для ног
+        private BampOpt footBamper = new BampOpt("Бампер для ног");
+        public BampOpt FootBamper { get { return footBamper; } }
+
+        // Не стандартное окно
+        private MDWindowOpt window = new MDWindowOpt("Не стандартное окно");
+        public MDWindowOpt Window { get { return window; } }
+
+        private Option[] MyOptions = new Option[3];
+
+        public MDOptions()
+        {
+            MyOptions[0] = handBamper;
+            MyOptions[1] = footBamper;
+            MyOptions[2] = window;
+        }
+        
+
+        public IEnumerator GetEnumerator()
+        {
+            return MyOptions.GetEnumerator();
+        }
     }
 }
