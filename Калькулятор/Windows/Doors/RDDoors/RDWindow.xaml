@@ -1,0 +1,361 @@
+﻿<Window x:Class="Калькулятор.RDWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Калькулятор"
+        mc:Ignorable="d"
+        Title="RDOWindow" Height="1000" Width="800"
+        WindowStyle="None" MouseDown="Window_MouseDown"
+        >
+    
+    <StackPanel Orientation="Vertical" Margin="10">
+        <!--Заголовок-->
+        <Label HorizontalAlignment="Center">Параметры распашной двери</Label>
+        <!--Основные данные-->
+        <StackPanel>
+            <!--Первая строка-->
+            <StackPanel Orientation="Horizontal">
+                <!--Тип двери-->
+                <Grid Width="90">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Тип двери" Style="{StaticResource CellHead}"/>
+                    <ComboBox Grid.Row="1" Name="TypeCombo" Style="{StaticResource Combo}" SelectedValue="{Binding Path=SubTypeName}" ItemsSource="{Binding SubTypes}"/>
+                    <TextBlock Grid.Row="2" Text="РДО/РДД" Style="{StaticResource CellUnder}"/>
+                </Grid>
+                <!--Размеры проема-->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Style="{StaticResource LittleGridWidth}"/>
+                        <ColumnDefinition Style="{StaticResource LittleGridWidth}"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock  Grid.ColumnSpan="2" Text="Монтажный проём (=Световой проём)" Style="{StaticResource CellHead}" />
+                    <TextBox  Grid.Row="1"  Name="ShirBox" Text="{Binding Path=Width}" Style="{StaticResource TBox}"/>
+                    <TextBox  Grid.Row="1" Grid.Column="1" Name="VisotBox" Text="{Binding Path=Height}" Style="{StaticResource TBox}"/>
+
+                    <TextBlock Grid.Row="2" Text="Ширина, мм." Style="{StaticResource CellUnder}"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="Высота, мм." Style="{StaticResource CellUnder}"/>
+                </Grid>
+                <!--Толщина и температурное исполнение-->
+                <Grid Width="80">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Толщина / Темпер. исп." Style="{StaticResource CellHead}"/>
+                    <ComboBox Grid.Row="1" Grid.Column="3" Style="{StaticResource Combo}">
+                        <ComboBoxItem Content="80/С"/>
+                        <ComboBoxItem Content="80/Н"/>
+                        <ComboBoxItem Content="100/Н"/>
+                        <ComboBoxItem Content="120/Н"/>
+                    </ComboBox>
+                </Grid>
+                <!--Открывание двери-->
+                <Grid Width="120">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Открывание" Style="{StaticResource CellHead}"/>
+                    <ComboBox Grid.Row="1" Style="{StaticResource Combo}">
+                        <ComboBoxItem Content="Левое"/>
+                        <ComboBoxItem Content="Правое"/>
+                    </ComboBox>
+                    <TextBlock Grid.Row="2" Text="Левое/Правое" Style="{StaticResource CellUnder}"/>
+                </Grid>
+                <!--Исполнние С порогом / Без порога-->
+                <Grid Width="120">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Исполнение" Style="{StaticResource CellHead}"/>
+                    <ComboBox Grid.Row="1" Style="{StaticResource Combo}">
+                        <ComboBoxItem Content="Без порога"/>
+                        <ComboBoxItem Content="С порогом"/>
+                    </ComboBox>
+                    <TextBlock Grid.Row="2" Text="С порогом / Без порога" Style="{StaticResource CellUnder}"/>
+                </Grid>
+            </StackPanel>
+            <!--Вторая строка-->
+            <Label HorizontalAlignment="Left" VerticalAlignment="Top"  Height="30" FontSize="12" Width="80">Крепление:</Label>
+            <StackPanel Orientation="Horizontal" >
+                <!--Материал стены-->
+                <Grid Width="230" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <ComboBox Style="{StaticResource Combo}"/>
+                    <TextBlock Grid.Row="1" Text="Материал стены" Style="{StaticResource CellUnder}"/>
+                </Grid> 
+                <!--Толщина стены-->
+                <Grid  Width="80">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBox Grid.Row="0" Style="{StaticResource TBox}"/>
+                    <TextBlock Grid.Row="1" Text="Толщина стены, мм" Style="{StaticResource CellUnder}"/>
+                </Grid>
+                <!--Тип комплекта-->
+                <Grid Width="120" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBox Grid.Row="0" Style="{StaticResource TBox}"/>
+                    <TextBlock Grid.Row="1" Text="Тип комплекта" Style="{StaticResource CellUnder}"/>
+                </Grid>
+                <!--Количество дверей-->
+                <Grid Width="50" Margin="20 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="1" Grid.Column="6" Text="Количество" Style="{StaticResource CellHead}"/>
+                    <TextBox Grid.Row="0"  Grid.Column="6" Name="KolBox" Text="{Binding Path=Count}" Style="{StaticResource TBox}"/>
+                </Grid>
+            </StackPanel>
+        </StackPanel>
+        <!--Опции-->
+        <Label HorizontalAlignment="Left" VerticalAlignment="Top"  Height="30" FontSize="12" Width="80">Опции:</Label>
+        <StackPanel Orientation="Horizontal">
+            <!--Первый столбик-->
+            <StackPanel Margin="10">
+                <!--Вариант порога-->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox Content="Вариант порога" Style="{StaticResource Check}"/>
+                    <ComboBox Grid.Column="1" Style="{StaticResource Combo}"/>
+                    <ComboBox Grid.Column="2" Style="{StaticResource Combo}"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="Тип порога" Style="{StaticResource CellUnder}"/>
+                    <TextBlock Grid.Row="1" Grid.Column="2" Text="Материал" Style="{StaticResource CellUnder}"/>
+                </Grid>
+                <!--Внешний отбойник-->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="70"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox Content="Внешний отбойник" Style="{StaticResource Check}"/>
+                    <ComboBox Grid.Column="1" Style="{StaticResource Combo}"/>
+                    <TextBox Grid.Column="2" Style="{StaticResource TBox}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="Материал" Style="{StaticResource CellUnder}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="2" Text="Высота, мм" Style="{StaticResource CellUnder}"/>
+                </Grid>
+                <!--Внутренний отбойник-->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="70"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox Content="Внутренний отбойник" Style="{StaticResource Check}"/>
+                    <ComboBox Grid.Column="1" Style="{StaticResource Combo}"/>
+                    <TextBox Grid.Column="2" Style="{StaticResource TBox}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="Материал" Style="{StaticResource CellUnder}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="2" Text="Высота, мм" Style="{StaticResource CellUnder}"/>
+                </Grid>
+                <!--Внутренняя рама-->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="70"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox Content="Внутренняя рама" Style="{StaticResource Check}"/>
+                    <ComboBox Grid.Column="1" Style="{StaticResource Combo}"/>
+                    <TextBox Grid.Column="2" Style="{StaticResource TBox}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="Материал" Style="{StaticResource CellUnder}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="2" Text="Номер цвета" Style="{StaticResource CellUnder}"/>
+                </Grid>
+                <!--Внуьреннее открывание-->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="190"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox Content="Внутреннее открывание" Style="{StaticResource Check}"/>
+                    <TextBox  Grid.Column="1" Style="{StaticResource TBox}"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="Открывание" Style="{StaticResource CellUnder}"/>
+                </Grid>
+                <!--Доп. комплект крепежа-->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="70"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox Content="Доп. комплект крепежа" Style="{StaticResource Check}"/>
+                    <Button Grid.Row="2" Grid.Column="1" Content="Задать крепеж" Margin="2"/>
+                    <TextBox Grid.Column="1" Style="{StaticResource TBox}"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="Тип комплекта" Style="{StaticResource CellUnder}"/>
+                    <TextBox Grid.Column="2" Style="{StaticResource TBox}"/>
+                    <TextBlock Grid.Row="1" Grid.Column="2" Text="Кол-во"  Style="{StaticResource CellUnder}"/>
+                </Grid>
+                <!--Дополнительный порог-->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="70"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox Content="Дополнительный порог" Style="{StaticResource Check}"/>
+                    <ComboBox Grid.Column="1" Style="{StaticResource Combo}"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="Высота пола камеры" Style="{StaticResource CellUnder}"/>
+                </Grid>
+                <!---->
+            </StackPanel>
+            <!--Второй столбик-->
+            <StackPanel Margin="10">
+                <!--Клапан выравнивания давления-->
+                    <CheckBox Content="Клапан выравнивания давления V30" Style="{StaticResource Check}"/>
+                    <!--Материал наружней обшивки-->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="70"/>
+                        </Grid.ColumnDefinitions>
+                        <CheckBox Content="Материал наружней обшивки" Style="{StaticResource Check}"/>
+                        <ComboBox Grid.Column="1" Style="{StaticResource Combo}"/>
+                        <TextBox Grid.Column="2" Style="{StaticResource TBox}"/>
+                        <TextBlock Grid.Column="1" Grid.Row="1" Text="Материал" Style="{StaticResource CellUnder}"/>
+                        <TextBlock Grid.Column="2" Grid.Row="2" Text="Номер цвета" Style="{StaticResource CellUnder}"/>
+                    </Grid>
+                    <!--Материал внутренней обшивки-->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="70"/>
+                        </Grid.ColumnDefinitions>
+                        <CheckBox Content="Материал внутренней обшивки" Style="{StaticResource Check}"/>
+                        <ComboBox Grid.Column="1" Style="{StaticResource Combo}"/>
+                        <TextBox Grid.Column="2" Style="{StaticResource TBox}"/>
+                        <TextBlock Grid.Column="1" Grid.Row="1" Text="Материал" Style="{StaticResource CellUnder}"/>
+                        <TextBlock Grid.Column="2" Grid.Row="2" Text="Номер цвета" Style="{StaticResource CellUnder}"/>
+                    </Grid>
+                    <!--Материал рамы-->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="70"/>
+                        </Grid.ColumnDefinitions>
+                        <CheckBox Content="Материал рамы" Style="{StaticResource Check}"/>
+                        <ComboBox Grid.Column="1" Style="{StaticResource Combo}"/>
+                        <TextBox Grid.Column="2" Style="{StaticResource TBox}"/>
+                        <TextBlock Grid.Column="1" Grid.Row="1" Text="Материал" Style="{StaticResource CellUnder}"/>
+                        <TextBlock Grid.Column="2" Grid.Row="2" Text="Номер цвета" Style="{StaticResource CellUnder}"/>
+                    </Grid>
+                    <!--Монорельс-->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <CheckBox Content="Монорельс" Style="{StaticResource Check}"/>
+                        <Button Content="Задать размеры" Grid.Column="1"/>
+                        <TextBox Grid.Row="1" Style="{StaticResource TBox}"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource TBox}"/>
+                        <TextBox Grid.Row="1" Grid.Column="2" Style="{StaticResource TBox}"/>
+                        <TextBox Grid.Row="1" Grid.Column="3" Style="{StaticResource TBox}"/>
+                        <TextBlock Text="Тип монорельса" Grid.Row="2" Style="{StaticResource CellUnder}"/>
+                        <TextBlock Text="Ширина, мм" Grid.Row="2" Grid.Column="1" Style="{StaticResource CellUnder}"/>
+                        <TextBlock Text="Высота, мм" Grid.Row="2" Grid.Column="2" Style="{StaticResource CellUnder}"/>
+                        <TextBlock Text="Сдвиг оси +/-, мм" Grid.Row="2" Grid.Column="3" Style="{StaticResource CellUnder}"/>
+                    </Grid>
+                <!--Обрамление проёма-->
+                    <CheckBox Content="Обрамление проёма" Style="{StaticResource Check}"/>
+                <!--Обогрев порогового уплотнителя-->    
+                <CheckBox Content="Обогрев порогового уплотнителя" Style="{StaticResource Check}"/>
+                <!--Окно-->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="300"/>
+                        </Grid.ColumnDefinitions>
+                        <CheckBox Content="Окно" Style="{StaticResource Check}"/>
+                        <ComboBox Grid.Column="1" Style="{StaticResource Combo}"/>
+                        <TextBlock Grid.Column="1" Grid.Row="1" Text="Размер окна" Style="{StaticResource CellUnder}"/>
+                    </Grid>
+                <!--Рычажная ручка-->
+                    <CheckBox Content="Рычажная ручка" Style="{StaticResource Check}"/>
+                </StackPanel>
+        </StackPanel>
+            <Label HorizontalAlignment="Left" VerticalAlignment="Top"  Height="30" FontSize="12">Опции, рассчитанные вручную:</Label>
+        
+            <Button Grid.Row="7"  VerticalAlignment="Bottom" HorizontalAlignment="Right" Name="OkBtn" Click="OkBtn_Click" Content="Принять" Margin="2"/>
+        </StackPanel>
+</Window>

@@ -5,16 +5,16 @@ winexe
 C#
 .cs
 C:\Git\Калькулятор\Калькулятор\obj\Debug\
-Калькулятор
+Calculator
 none
 false
 DEBUG;TRACE
 C:\Git\Калькулятор\Калькулятор\App.xaml
-91464338311
+8-2139884528
 2-1758963762
-22-1022160438
+33-339345010
 15-1954474480
-BamperControl.xaml;MainWindow.xaml;MDWindow.xaml;MDWindowControl.xaml;RDWindow.xaml;Report.xaml;SelectWindow.xaml;StyleDictionary.xaml;Window1.xaml;
+Windows\Order\MainWindow.xaml;Windows\AllStyles.xaml;Windows\Doors\MDDoors\MDWindow.xaml;Windows\Doors\RDDoors\RDWindow.xaml;Report.xaml;Windows\Order\SelectWindow.xaml;Windows\UserControls\OptionsView.xaml;Windows\UserControls\TechDoorWallTypeView.xaml;
 
-True
+False
 

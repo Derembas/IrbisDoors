@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Калькулятор", "Калькулятор\Калькулятор.csproj", "{F8D11D9F-1353-4A5E-923F-8C55E7AFA237}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "Калькулятор\Calculator.csproj", "{F8D11D9F-1353-4A5E-923F-8C55E7AFA237}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

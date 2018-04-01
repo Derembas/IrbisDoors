@@ -60,7 +60,7 @@ namespace Калькулятор {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Калькулятор;component/report.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Calculator;component/report.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\Report.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
