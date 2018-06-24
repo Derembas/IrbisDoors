@@ -19,11 +19,56 @@ namespace Calculator
     /// </summary>
     public partial class SelectWindow : Window
     {
+        private bool okPressed; // Флаг, была ли нажата кнопка применить
 
         public SelectWindow()
         {
             InitializeComponent();
+
+            ProductList = Helpers.AllNames.ProductTypes.ProductTypeList;
+            DataContext = this;
         }
-        
+
+        // Выбранные тип продукта
+        public string SelectedProduct { get; set; }
+
+        // Список всех возможных продуктов
+        public string[] ProductList { get; private set; }
+
+        // Выбор нового оборудования
+        public string SelectProductType()
+        {
+            okPressed = false;
+            ShowDialog();
+            if (okPressed)
+                return SelectedProduct;
+            else
+                return null;
+        }
+
+        // Команда принятия решения
+        private ICommand okPressCommand;
+        public ICommand OkPressCommand
+        {
+            get
+            {
+                if (okPressCommand == null)
+                    okPressCommand = new Helpers.RelayCommand(param => OkPress(), param=> CanPressOk());
+
+                return okPressCommand;
+            }
+        }
+
+        private bool CanPressOk()
+        {
+            return SelectedProduct != null;
+        }
+
+        private void OkPress()
+        {
+            okPressed = true;
+            Close();
+        }
+
     }
 }

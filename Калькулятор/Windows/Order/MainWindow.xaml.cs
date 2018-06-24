@@ -21,10 +21,13 @@ namespace Calculator
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Order myOrder;
         // Глобальная переменная
         public MainWindow()
         {
             InitializeComponent();
+            myOrder = new Order();
+            DataContext = myOrder;
         }
     }
 }

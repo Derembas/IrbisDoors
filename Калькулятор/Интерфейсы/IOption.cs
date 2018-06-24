@@ -9,7 +9,8 @@ namespace Calculator
     public interface IOption
     {
         string Name { get; }
-        bool Checked { get; set; }
-        Property[] Properties { get; }
+        bool IsIncluded { get; set; }
+
+        BaseClasses.Property[] Properties { get; }
     }
 }

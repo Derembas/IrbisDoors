@@ -16,11 +16,11 @@ namespace Calculator.Helpers
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
             //получаем вызывающий контейнер
-            var curProp = item as Property;
+            var curProp = item as BaseClasses.Property;
 
             if (curProp != null)
             {
-                if (curProp.Values == null || !curProp.Values.Any())
+                if (curProp.Values != null && curProp.Values.Any())
                     return ComboBoxTemplate;
             }
             return TextBoxTemplate;

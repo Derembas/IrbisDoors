@@ -4,6 +4,50 @@
                     xmlns:helpers="clr-namespace:Calculator.Helpers">
 
     <!--#region Стили-->
+
+    <!--TextBlock_s-->
+    <Style TargetType="TextBlock">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    
+    <!--ComboBoxes-->
+    <Style TargetType="ComboBox">
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+    </Style>
+
+    <!--TextBoxes-->
+    <Style TargetType="TextBox">
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+    </Style>
+    
+    <!--Expanders-->
+    <Style TargetType="Expander">
+        <Setter Property="Margin" Value="5"/>
+    </Style>
+
+    <!--ListBoxes-->
+    <Style TargetType="ListBox">
+        <Setter Property="Margin" Value="5"/>
+    </Style>
+
+    <!--GroupBoxes-->
+    <Style TargetType="GroupBox">
+        <Setter Property="Margin" Value="5"/>
+    </Style>
+
+    <Style x:Key="Check" TargetType="CheckBox">
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style TargetType="Button">
+        <Setter Property="Margin" Value="5"/>
+    </Style>
+
+    <!--#region Именованные стили-->
+    
     <Style x:Key="CellHead" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="Calibri"/>
         <Setter Property="FontSize"  Value="12"/>
@@ -14,7 +58,7 @@
         <Setter Property="TextWrapping"  Value="Wrap"/>
         <Setter Property="TextAlignment" Value="Center"/>
     </Style>
-    
+
     <Style x:Key="CellUnder" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="Calibri"/>
         <Setter Property="FontSize"  Value="10"/>
@@ -25,23 +69,6 @@
         <Setter Property="TextWrapping"  Value="Wrap"/>
         <Setter Property="TextAlignment" Value="Center"/>
     </Style>
-    
-    <!--ComboBoxes-->
-    <Style TargetType="ComboBox">
-        <Setter Property="Margin" Value="2 0 2 0"/>
-        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-    </Style>
-    
-    <!--TextBoxes-->
-    <Style TargetType="TextBox">
-        <Setter Property="Margin" Value="2 0"/>
-        <Setter Property="TextAlignment" Value="Center"/>
-    </Style>
-
-    <Style x:Key="Check" TargetType="CheckBox">
-        <Setter Property="Margin" Value="2 0 2 0"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-    </Style>
 
     <Style x:Key="MediumGridWidth" TargetType="ColumnDefinition">
         <Setter Property="Width" Value="120"/>
@@ -50,7 +77,44 @@
     <Style x:Key="BigGridWidth" TargetType="ColumnDefinition">
         <Setter Property="Width" Value="190"/>
     </Style>
+
+    <!--#endregion-->
+
+    <!--#endregion-->
     
+    <!--#region Стиль для свойства Property-->
+
+    <Style x:Key="PropertyControlStyle" TargetType="{x:Type ContentControl}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBox Text="{Binding Path=Value}" IsEnabled="{Binding Path=IsEnabled}"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=UseValueList}" Value="true">
+                <Setter Property="ContentTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <ComboBox ItemsSource="{Binding Path=Values}" SelectedValue="{Binding Path=Value}"
+                                      IsEnabled="{Binding Path=IsEnabled}"/>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=MyType}" Value="{x:Static helpers:PropertyTypes.BoolType}">
+                <Setter Property="ContentTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding Path=Value}" IsEnabled="{Binding Path=IsEnabled}"/>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
     <!--#endregion-->
     
     <!--#region Шаблоны для свойств-->
@@ -79,11 +143,13 @@
         </Grid>
     </DataTemplate>
 
+    <!--#endregion-->
+    
     <!--#region Selector-->
 
-    <!--<helpers:PropertyTemplateSelector x:Key="propertyTemplateSelector" 
+    <helpers:PropertyTemplateSelector x:Key="propertyTemplateSelector" 
                                       ComboBoxTemplate="{StaticResource comboBoxTemplate}"
-                                      TextBoxTemplate="{StaticResource textBoxTemplate}"/>-->
+                                      TextBoxTemplate="{StaticResource textBoxTemplate}"/>
 
     <!--#endregion-->
 

@@ -75,33 +75,43 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BaseClasses\Door.cs" />
+    <Compile Include="BaseClasses\Option.cs" />
+    <Compile Include="BaseClasses\Options\MaterialOption.cs" />
+    <Compile Include="BaseClasses\Options\MonorelsOption.cs" />
+    <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Helpers\Selectors.cs" />
-    <Compile Include="Windows\Doors\MDDoors\MDWindow.xaml.cs">
-      <DependentUpon>MDWindow.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="ViewModels\MDDoors\MainProperties\MDMainProperties.cs" />
+    <Compile Include="ViewModels\MDDoors\Options\WindowOption.cs" />
     <Compile Include="Helpers\AllNames.cs" />
-    <Compile Include="Windows\UserControls\OptionsView.xaml.cs">
-      <DependentUpon>OptionsView.xaml</DependentUpon>
+    <Compile Include="Windows\Door\AddOptionWindow.xaml.cs">
+      <DependentUpon>AddOptionWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\UserControls\TechDoorWallTypeView.xaml.cs">
-      <DependentUpon>TechDoorWallTypeView.xaml</DependentUpon>
+    <Compile Include="Windows\Door\DoorWindow.xaml.cs">
+      <DependentUpon>DoorWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Базовае классы\Двери\Крепление\TechDoorWallType.cs" />
+    <Compile Include="CommonClasses\Крепление\TechDoorWallType.cs" />
     <Compile Include="Интерфейсы\IDoor.cs" />
     <Compile Include="Интерфейсы\IOption.cs" />
     <Compile Include="Интерфейсы\IPrice.cs" />
-    <Compile Include="Базовае классы\Свойства\Propery.cs" />
+    <Compile Include="BaseClasses\Propery.cs" />
     <Compile Include="ViewModels\RDDoors\RDDoor.cs" />
-    <Compile Include="Windows\Doors\RDDoors\RDWindow.xaml.cs">
-      <DependentUpon>RDWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\Order\SelectWindow.xaml.cs">
       <DependentUpon>SelectWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\MDDoors\MDDoor.cs" />
-    <Compile Include="ViewModels\MDDoors\Опции\FootBamperOption.cs" />
-    <Compile Include="ViewModels\MDDoors\Опции\HandBamperOption.cs" />
-    <Compile Include="ViewModels\MDDoors\Опции\LockOption.cs" />
+    <Compile Include="ViewModels\MDDoors\Options\FootBamperOption.cs" />
+    <Compile Include="ViewModels\MDDoors\Options\HandBamperOption.cs" />
+    <Compile Include="ViewModels\MDDoors\Options\LockOption.cs" />
+    <Compile Include="Интерфейсы\IProperty.cs" />
+    <Page Include="Windows\Door\AddOptionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Door\DoorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\Order\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -119,23 +129,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Doors\MDDoors\MDWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\Doors\RDDoors\RDWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Windows\Order\SelectWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\UserControls\OptionsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\UserControls\TechDoorWallTypeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -178,9 +172,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Базовае классы\Опции\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
       <Visible>False</Visible>

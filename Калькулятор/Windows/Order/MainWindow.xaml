@@ -5,24 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculator"
         mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=local:Order}"
         Title="MainWindow" Height="350" Width="525" MinWidth="250">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="100"/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="AllDoors" HorizontalAlignment="Stretch" ItemsSource="{Binding Order}" SelectedItem="{Binding Path=SelectedDoor}">
+        <ListBox x:Name="AllDoors" HorizontalAlignment="Stretch" SelectedItem="{Binding Path=SelectedDoor}"
+                 ItemsSource="{Binding Path=Doors}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="1"/> <!-- {Binding Path=Number}"/>-->
-                        <TextBlock Text="{Binding Path=Title}"/>
+                        <TextBlock Text="{Binding Path=MainProperties}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Column="1">
-            <Button Content="Добавить" />
+            <Button Content="Добавить" Command="{Binding Path=AddNewDoorCommand}"/>
             <Button Content="Править" />
             <Button Content="Удалить" />
             <Button Content="Отмена" />

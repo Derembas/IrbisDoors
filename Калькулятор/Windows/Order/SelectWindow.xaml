@@ -4,14 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculator"
-        mc:Ignorable="d"
-        Title="SelectWindow" Height="auto" Width="400"
-        WindowStyle="None" Background="AliceBlue">
+        mc:Ignorable="d" SizeToContent="Height"
+        Title="Выбор типа продкции" Width="400" ResizeMode="NoResize">
     <StackPanel>
-        <ComboBox Name="DoorType" Margin="10">
-            <ComboBoxItem Content="1. РД - Распашная дверь"/>
-            <ComboBoxItem Content="2. МД - Маятниковая дверь"/>
-        </ComboBox>
-        <Button Content="Выбрать" Margin="10"/>
+        <ComboBox Name="DoorType" ItemsSource="{Binding Path=ProductList}" 
+                  SelectedItem="{Binding Path=SelectedProduct}"/>
+
+        <Button Content="Выбрать" Command="{Binding Path=OkPressCommand}"/>
     </StackPanel>
 </Window>

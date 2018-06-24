@@ -107,5 +107,69 @@ namespace Calculator.Helpers
             public const string boltUpLock = "Шпингалет сверху полотна";
         }
 
+        public static class MDWindowFrames
+        {
+            public const string rubberFrame = "Резиновое";
+            public const string metalFrame = "Металлическое";
+        }
+
+        public static class MDWindowForms
+        {
+            public const string ellipse200x580 = "Овальное 200х580";
+            public const string ellipse300x580 = "Овальное 300х580";
+            public const string circle300 = "Круглое 300";
+            public const string circle350 = "Круглое 350";
+            public const string circle400 = "Круглое 400";
+            public const string circle450 = "Круглое 450";
+            public const string rectangle300x600 = "Прямоугольное 300х600";
+            public const string rectangle400x600 = "Прямоугольное 400х600";
+            public const string rectangle500x700 = "Прямоугольное 500х700";
+            public const string square400 = "Квадратное 400х400";
+            public const string square600 = "Квадратное 600х600";
+            public const string square700 = "Квадратное 700х700";
+            public const string rhomb200 = "Ромб 200х200";
+            public const string rhomb300 = "Ромб 300х300";
+        }
+
+        public static class MonorelsTypes
+        {
+            public const string Type1 = "Тип 1";
+            public const string Type2 = "Тип 2";
+            public const string Type3 = "Тип 3";
+        }
+
+        public static class ProductTypes
+        {
+            /// <summary>Перечень выпускаемой продукции</summary>
+            public static string[] ProductTypeList = new string[]
+            {
+                k1MDType,
+                k2MDPstType,
+                k3ODType,
+                k4RDType
+            };
+
+
+            /// <summary>1. МД(Оф) и МД(Ф) - маятниковая офисная и с фиксацией полотна</summary>
+            public const string k1MDType = "1. МД(Оф) и МД(Ф) - маятниковая офисная и с фиксацией полотна";
+
+            /// <summary>2. МД(Пст) - маятниковая пластиковая</summary>
+            public const string k2MDPstType = "2. МД(Пст) - маятниковая пластиковая";
+
+            /// <summary>3. ОД(ОН) и ОД(СН) - откатная основного и специального назначения</summary>
+            public const string k3ODType = "3. ОД(ОН) и ОД(СН) - откатная основного и специального назначения";
+
+            /// <summary>4. РД(ОН) и РД(СН) - распашная основного и специального назначения</summary>
+            public const string k4RDType = "4. РД(ОН) и РД(СН) - распашная основного и специального назначения";
+        }
+
+    }
+
+    public enum PropertyTypes
+    {
+        BoolType,
+        StringType,
+        IntegerType,
+        DateType
     }
 }

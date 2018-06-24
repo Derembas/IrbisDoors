@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Git\Калькулятор\Калькулятор\App.xaml
-7-1953337795
+51790231453
 
-27-1918769559
+33336397912
 15-1954474480
-Windows\Order\MainWindow.xaml;Windows\AllStyles.xaml;Windows\Doors\MDDoors\MDWindow.xaml;Windows\Doors\RDDoors\RDWindow.xaml;Windows\Order\SelectWindow.xaml;Windows\UserControls\OptionsView.xaml;Windows\UserControls\TechDoorWallTypeView.xaml;
+Windows\Door\AddOptionWindow.xaml;Windows\Door\DoorWindow.xaml;Windows\Order\MainWindow.xaml;Windows\AllStyles.xaml;Windows\Order\SelectWindow.xaml;
 
 True
 
