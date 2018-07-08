@@ -77,13 +77,17 @@
     </ApplicationDefinition>
     <Compile Include="BaseClasses\Door.cs" />
     <Compile Include="BaseClasses\Option.cs" />
-    <Compile Include="BaseClasses\Options\MaterialOption.cs" />
+    <Compile Include="BaseClasses\Options\NecessaryMaterialOption.cs" />
     <Compile Include="BaseClasses\Options\MonorelsOption.cs" />
+    <Compile Include="BaseClasses\Options\SimpleMaterialOption.cs" />
+    <Compile Include="CommonClasses\Крепление\CoolDoorWallType.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Helpers\Selectors.cs" />
     <Compile Include="ViewModels\MDDoors\MainProperties\MDMainProperties.cs" />
     <Compile Include="ViewModels\MDDoors\Options\WindowOption.cs" />
     <Compile Include="Helpers\AllNames.cs" />
+    <Compile Include="ViewModels\RDDoors\MainProperties\RDMainProperties.cs" />
+    <Compile Include="ViewModels\RDDoors\Options\StepVariantOption.cs" />
     <Compile Include="Windows\Door\AddOptionWindow.xaml.cs">
       <DependentUpon>AddOptionWindow.xaml</DependentUpon>
     </Compile>

@@ -8,10 +8,11 @@
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=base:Door}"
         Title="DoorWindow" 
-        MinHeight="200" MinWidth="300"
-        Height="400" Width="600">
+        SizeToContent="Height"
+        ResizeMode="NoResize" Width="800">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -53,12 +54,12 @@
             </Expander.Header>
             <Grid DockPanel.Dock="Top" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition MinWidth="200"/>
+                    <ColumnDefinition MinWidth="200" Width="2*"/>
                     <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition MinWidth="200"/>
+                    <ColumnDefinition MinWidth="200" Width="3*"/>
                 </Grid.ColumnDefinitions>
 
-                <Grid>
+                <Grid Height="250">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition Height="auto"/>
@@ -68,7 +69,8 @@
 
 
                         <ListBox ItemsSource="{Binding Path=EnabledOptions}"
-                         Name="OptionList" BorderThickness="0" Margin="0">
+                         Name="OptionList" BorderThickness="0" Margin="0"
+                                 SelectedItem="{Binding Path=SelectedOption}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Path=Name}"/>
@@ -115,5 +117,8 @@
         
         <!--Примечание-->
         <Expander Header="Примечание" Grid.Row="3"/>
+        
+        <!--Принять изменения-->
+        <Button Content="Применить" Grid.Row="4"/>
     </Grid>
 </Window>

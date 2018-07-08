@@ -25,7 +25,7 @@ namespace Calculator
         {
             InitializeComponent();
 
-            ProductList = Helpers.AllNames.ProductTypes.ProductTypeList;
+            ProductList = Helpers.AllNames.ProductClasses.ProductTypeList;
             DataContext = this;
         }
 

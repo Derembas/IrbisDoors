@@ -8,6 +8,7 @@ namespace Calculator.Helpers
 {
     public static  class AllNames
     {
+        // Рамы технологических дверей
         public static class Frames
         {
             /// <summary>В обхват</summary>
@@ -18,6 +19,7 @@ namespace Calculator.Helpers
             public const string p_typeFrame = "Внутрь проёма";
         }
 
+        // Материалы стен
         public  static class WallMaterials
         {
             /// <summary>Панели обрамления</summary>
@@ -44,6 +46,7 @@ namespace Calculator.Helpers
             public const string noType = "Без крепежа";
         }
 
+        // Обозначения крепёжного набора
         public static class FasteningTypes
         {
             public const string techFastenT1 = "Комплект Т1";
@@ -58,6 +61,7 @@ namespace Calculator.Helpers
             public const string techFastenT10 = "Комплект Т10";
         }
 
+        // Типы всех дверей
         public static class AllDoorTypes
         {
             public static class MDDoorTypes
@@ -71,14 +75,36 @@ namespace Calculator.Helpers
                 /// <summary>МДД(Ф) - с фиксацией полотна</summary>
                 public const string MDDFix = "МДД(Ф) - с фиксацией полотна";
             }
+            public static class RDDoorTypes
+            {
+                /// <summary>РДО(ОН)</summary>
+                public const string RDOON = "РДО(ОН)";
+                /// <summary>РДД(ОН)</summary>
+                public const string RDDON = "РДД(ОН)";
+                /// <summary>РДО(СН)</summary>
+                public const string RDOSN = "РДО(СН)";
+                /// <summary>РДД(СН)</summary>
+                public const string RDDSN = "РДД(СН)";
+                /// <summary>РДО(Пром)</summary>
+                public const string RDOProm = "РДО(Пром)";
+                /// <summary>РДД(Пром)</summary>
+                public const string RDDProm = "РДД(Пром)";
+                /// <summary>РДО(КС)</summary>
+                public const string RDOKS = "РДО(КС)";
+                /// <summary>РДД(КС)</summary>
+                public const string RDDKS = "РДД(КС)";
+            }
+
         }
 
+        // Направление открывания двери
         public static class DoorOpenSides
         {
             public const string leftSide = "Левое";
             public const string rightSide = "Правое";
         }
 
+        // Все материалы
         public static class Materials
         {
             public const string ral9003 = "RAL 9003";
@@ -93,6 +119,7 @@ namespace Calculator.Helpers
             public const string riflAl = "Рифл. алюм.";
         }
 
+        // Замки для маятниковой двери
         public static class MDLockTypes
         {
             /// <summary>Навесной замок</summary>
@@ -107,12 +134,15 @@ namespace Calculator.Helpers
             public const string boltUpLock = "Шпингалет сверху полотна";
         }
 
+        // Обрамления окна маятниковой двери
         public static class MDWindowFrames
         {
             public const string rubberFrame = "Резиновое";
             public const string metalFrame = "Металлическое";
+            public const string noFrame = "Без окна";
         }
 
+        // Формы окна маятниковой двери
         public static class MDWindowForms
         {
             public const string ellipse200x580 = "Овальное 200х580";
@@ -131,6 +161,7 @@ namespace Calculator.Helpers
             public const string rhomb300 = "Ромб 300х300";
         }
 
+        // Типы монорельсов
         public static class MonorelsTypes
         {
             public const string Type1 = "Тип 1";
@@ -138,7 +169,34 @@ namespace Calculator.Helpers
             public const string Type3 = "Тип 3";
         }
 
-        public static class ProductTypes
+        // Толщина холодирьных дверей
+        public static class CoolDoorThickness
+        {
+            /// <summary>80 среднетемпературная</summary>
+            public const string M80="80/С";
+
+            /// <summary>80 низкотемпературная</summary>
+            public const string L80 = "80/Н";
+
+            /// <summary>100 низкотемпературная</summary>
+            public const string L100 = "100/Н";
+
+            /// <summary>120 низкотемпературная</summary>
+            public const string L120 = "120/Н";
+
+            /// <summary>150 низкотемпературная</summary>
+            public const string L150 = "150/Н";
+        }
+
+        // Пороговое исполнение
+        public static class StepTypes
+        {
+            public const string NoStep = "безпороговое";
+            public const string WithStep = "пороговое";
+        }
+        
+        // Все классы даерей
+        public static class ProductClasses
         {
             /// <summary>Перечень выпускаемой продукции</summary>
             public static string[] ProductTypeList = new string[]

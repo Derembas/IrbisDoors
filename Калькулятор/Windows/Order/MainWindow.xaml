@@ -25,8 +25,8 @@
         </ListBox>
         <StackPanel Grid.Column="1">
             <Button Content="Добавить" Command="{Binding Path=AddNewDoorCommand}"/>
-            <Button Content="Править" />
-            <Button Content="Удалить" />
+            <Button Content="Править" Command="{Binding Path=EditDoorCommand}"/>
+            <Button Content="Удалить" Command="{Binding Path=DeleteDoorCommand}" />
             <Button Content="Отмена" />
             <Button Content="Сформировать"/>
         </StackPanel>

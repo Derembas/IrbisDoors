@@ -33,10 +33,13 @@ namespace Calculator.ViewModels.MDDoors
         public CommonClasses.TechDoorWallType AdditionalFestening { get; set; }
 
         // Материал полотна
-        public BaseClasses.Options.MaterialOption DoorMaterial { get; private set; }
+        public BaseClasses.Options.NecessaryMaterialOption DoorMaterial { get; private set; }
 
         // Материал рамы
-        public BaseClasses.Options.MaterialOption RamaMaterial { get; private set; }
+        public BaseClasses.Options.NecessaryMaterialOption RamaMaterial { get; private set; }
+
+        // Внутренняя рама
+        public BaseClasses.Options.NecessaryMaterialOption InnerFrame { get; private set; }
 
         #endregion
 
@@ -73,7 +76,7 @@ namespace Calculator.ViewModels.MDDoors
             Options.Add(AdditionalFestening);
 
             // Материал полотна
-            DoorMaterial = new BaseClasses.Options.MaterialOption("Материал полотна",
+            DoorMaterial = new BaseClasses.Options.NecessaryMaterialOption("Материал полотна",
                 new object[]
                 {
                     Helpers.AllNames.Materials.ral9003,
@@ -87,7 +90,7 @@ namespace Calculator.ViewModels.MDDoors
             Options.Add(DoorMaterial);
 
             // Материал рамы
-            RamaMaterial = new BaseClasses.Options.MaterialOption("Материал рамы", 
+            RamaMaterial = new BaseClasses.Options.NecessaryMaterialOption("Материал рамы", 
                 new object[] { Helpers.AllNames.Materials.ral9016 }, 
                 new object[]
                 {

@@ -36,7 +36,7 @@ namespace Calculator.BaseClasses
 
             var enabledOptions = new CollectionViewSource();
             enabledOptions.Source = Options;
-            enabledOptions.View.SortDescriptions.Add(new SortDescription("IsNecessary", ListSortDirection.Descending));
+            //enabledOptions.View.SortDescriptions.Add(new SortDescription("IsNecessary", ListSortDirection.Descending));
             enabledOptions.View.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
             enabledOptions.View.Filter = OptoinsFilter;
             EnabledOptions = enabledOptions.View;
@@ -88,7 +88,7 @@ namespace Calculator.BaseClasses
             get
             {
                 if (addNewOptionCommand == null)
-                    addNewOptionCommand = new Helpers.RelayCommand(param => addNewOption());
+                    addNewOptionCommand = new Helpers.RelayCommand(param => addNewOption(), param=>canAddOption());
 
                 return addNewOptionCommand;
             }

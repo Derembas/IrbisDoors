@@ -14,7 +14,7 @@ namespace Calculator
     // Класс "Заказ" содержит информацию по всему заказу
     public class Order
     {
-        public IDoor SelectedDoor { get; set; }
+        public BaseClasses.Door SelectedDoor { get; set; }
         
         public ObservableCollection<BaseClasses.Door> Doors { get; set; }
         public Order()
@@ -43,16 +43,67 @@ namespace Calculator
         {
             var curSelectWindow = new SelectWindow();
             var typeToAdd= curSelectWindow.SelectProductType();
+            BaseClasses.Door doorToAdd=null;
             switch (typeToAdd)
             {
-                case Helpers.AllNames.ProductTypes.k1MDType:
-                    var doorToAdd = new ViewModels.MDDoors.MDDoor();
-                    doorToAdd.Edit();
-                    Doors.Add(doorToAdd);
+                case Helpers.AllNames.ProductClasses.k1MDType:
+                    doorToAdd = new ViewModels.MDDoors.MDDoor();
+                    break;
+                case Helpers.AllNames.ProductClasses.k4RDType:
+                    doorToAdd = new ViewModels.RDDoors.RDDoor();
                     break;
                 default:
                     break;
             }
+
+            if (doorToAdd != null)
+            {
+                doorToAdd.Edit();
+                Doors.Add(doorToAdd);
+            }
+        }
+
+        #endregion
+
+        #region Правка выбранной двери
+
+        private ICommand editDoorCommand;
+
+        public ICommand EditDoorCommand
+        {
+            get
+            {
+                if (editDoorCommand == null)
+                    editDoorCommand = new Helpers.RelayCommand(param => EditDoor(), param=> { return SelectedDoor != null; });
+
+                return editDoorCommand;
+            }
+        }
+        private void EditDoor()
+        {
+            SelectedDoor.Edit();
+        }
+
+
+        #endregion
+
+        #region Удаление выбранной двери
+
+        private ICommand deleteDoorCommand;
+
+        public ICommand DeleteDoorCommand
+        {
+            get
+            {
+                if (deleteDoorCommand == null)
+                    deleteDoorCommand = new Helpers.RelayCommand(param => AddNewDoor(), param=> { return SelectedDoor != null; });
+
+                return deleteDoorCommand;
+            }
+        }
+        private void DeleteDoor()
+        {
+            Doors.Remove(SelectedDoor);
         }
 
         #endregion

@@ -10,8 +10,20 @@ namespace Calculator.BaseClasses
 {
     public class Option : INotifyPropertyChanged
     {
+        private bool isIncluded;
         /// <summary> Включена ли опция в дверь</summary>
-        public bool IsIncluded { get; set; }
+        public bool IsIncluded
+        {
+            get { return isIncluded; }
+            set
+            {
+                if(isIncluded!=value)
+                {
+                    isIncluded = value;
+                    OnPropertyChanged("IsIncluded");
+                }
+            }
+        }
 
         /// <summary> Обязательна ли опция для двери</summary>
         public bool IsNecessary { get; private set; }

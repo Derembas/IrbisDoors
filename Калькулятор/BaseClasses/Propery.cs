@@ -102,6 +102,9 @@ namespace Calculator.BaseClasses
                 if(useValueList!=value)
                 {
                     useValueList = value;
+                    if (value)
+                        Value = Values.First();
+
                     OnPropertyChanged("UseValueList");
                 }
             }
